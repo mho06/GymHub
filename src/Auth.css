@@ -1,0 +1,111 @@
+/* src/Auth.css */
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #2C3E50;
+    border-radius: 15px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    color: #fff;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #27AE60; /* Green for energy and vitality */
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+  }
+  
+  .input-container {
+    margin-bottom: 25px;
+  }
+  
+  label {
+    font-size: 16px;
+    color: #BDC3C7;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 2px solid #27AE60;
+    background-color: #34495E;
+    font-size: 16px;
+    color: #fff;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  input:focus {
+    border-color: #16A085; /* Lighter green on focus */
+  }
+  
+  button {
+    width: 100%;
+    padding: 16px;
+    background-color: #27AE60;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #16A085; /* Lighter green on hover */
+  }
+  
+  .password-container {
+    position: relative;
+  }
+  
+  .show-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #BDC3C7;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .error {
+    color: #E74C3C;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #BDC3C7;
+  }
+  
+  a {
+    color: #FF5733; /* Orange accent for CTA */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #FFC300; /* Lighter orange on hover */
+  }
+  
+  @media (max-width: 480px) {
+    .auth-container {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  
