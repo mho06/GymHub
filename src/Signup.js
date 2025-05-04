@@ -3,6 +3,8 @@ import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "./firebase"; // Import Firestore
 
 import './Signup.css';
 
@@ -23,11 +25,28 @@ function Signup() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      // Create user with Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Add user data to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,  // Save email
+        username: username, // Save username
+        age: null,          // You can initialize this later, or leave it as null
+        gender: null,       // Same as age
+        country: null,      // Same as age
+      });
+
       navigate("/login"); // redirect to login page after successful signup
     } catch (error) {
       alert("Error signing up: " + error.message);
     }
+  };
+
+  // Navigate to Home page without saving data
+  const handleReturnHome = () => {
+    navigate("/");  // Goes back to home page
   };
 
   return (
@@ -89,6 +108,12 @@ function Signup() {
 
           <button type="submit" className="signup-btn">Sign Up</button>
         </form>
+
+        {/* Button to return to Home page without saving */}
+        <button onClick={handleReturnHome} className="return-home-btn">
+          Return to Home
+        </button>
+
         <p>Already have an account? <Link to="/login">Login</Link></p>
       </div>
     </div>

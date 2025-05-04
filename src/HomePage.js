@@ -1,34 +1,33 @@
 // src/HomePage.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import { FaDumbbell, FaUserCircle } from 'react-icons/fa';
-
 import './HomePage.css';
 
 function HomePage() {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const [showProfile, setShowProfile] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const initial = user?.email?.charAt(0).toUpperCase();
 
   const handleProfileClick = () => {
     if (user) {
-      setShowProfile((prev) => !prev); // Toggle profile info
+      setShowDropdown((prev) => !prev);
     } else {
-      navigate("/signup");
+      navigate('/login');
     }
   };
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      window.location.href = '/'; // Redirect to homepage
+      window.location.href = '/';
     } catch (error) {
-      console.error('Error signing out: ', error.message);
+      console.error('Logout error:', error.message);
     }
   };
 
@@ -47,8 +46,18 @@ function HomePage() {
               <Link to="/signup" className="header-link">Sign Up</Link>
             </>
           )}
-          <div className="profile-circle" onClick={handleProfileClick}>
-            {user ? initial : <FaUserCircle className="profile-icon" />}
+          <div className="profile-wrapper">
+            <div className="profile-circle" onClick={handleProfileClick}>
+              {user ? initial : <FaUserCircle className="profile-icon" />}
+            </div>
+            {showDropdown && user && (
+              <div className="profile-dropdown">
+                <p><strong>Email:</strong> {user.email}</p>
+                <p><strong>Username:</strong> {user.displayName || 'Not set'}</p>
+                <button onClick={() => navigate('/profile')}>Go to Profile</button>
+                <button onClick={handleLogout} className="logout-btn">Logout</button>
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -72,14 +81,6 @@ function HomePage() {
           <p>Phone: +123 456 7890</p>
         </div>
       </section>
-
-      {showProfile && user && (
-        <div className="profile-info-container">
-          <h3>User Information</h3>
-          <p><strong>Email:</strong> {user.email}</p>
-          <button className="logout-btn" onClick={handleLogout}>Logout</button>
-        </div>
-      )}
     </div>
   );
 }

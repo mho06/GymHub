@@ -4,6 +4,9 @@ import { auth } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import './Login.css';
 
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "./firebase"; // adjust path if needed
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,20 +16,43 @@ function Login() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      const validRoutes = ["about", "membership", "profile"];
-      if (redirectTo && validRoutes.includes(redirectTo)) {
-        navigate(`/${redirectTo}`);
-      } else {
-        navigate("/");
-      }
-    } catch (error) {
-      alert("Error logging in: " + error.message);
+
+// Create user profile if not exists
+async function createUserProfileIfNotExists(user, username = '') {
+  const userRef = doc(db, "users", user.uid);
+  const userSnap = await getDoc(userRef);
+
+  if (!userSnap.exists()) {
+    await setDoc(userRef, {
+      username: username || user.displayName || '',
+      age: '',
+      gender: '',
+      country: '',
+      lastUsernameChange: null,
+    });
+  }
+}
+
+const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // ✅ Ensure Firestore user profile exists
+    await createUserProfileIfNotExists(user);
+
+    const validRoutes = ["about", "membership", "profile"];
+    if (redirectTo && validRoutes.includes(redirectTo)) {
+      navigate(`/${redirectTo}`);
+    } else {
+      navigate("/");
     }
-  };
+  } catch (error) {
+    alert("Error logging in: " + error.message);
+  }
+};
+
 
   return (
     <div className="login-container">
@@ -51,13 +77,9 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="show-password-btn"
-            >
-              <i className="fas fa-dumbbell"></i>
-            </button>
+            <span onClick={() => setShowPassword(!showPassword)} className="show-password-btn">
+                <i className="fas fa-dumbbell"></i> {/* Dumbbell icon */}
+              </span>
           </div>
 
           <button type="submit" className="login-btn">Login</button>

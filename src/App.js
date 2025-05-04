@@ -4,6 +4,7 @@ import Login from './Login';
 import Signup from './Signup';
 import HomePage from './HomePage';  // Your homepage (dashboard) component
 import ProtectedRoute from './ProtectedRoute';  // Your protected route component
+import ProfilePage from './ProfilePage'
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Route path="/" element={<HomePage />} />  {/* Home Page */}
         <Route path="/login" element={<Login />} />  {/* Login Page */}
         <Route path="/signup" element={<Signup />} />  {/* Signup Page */}
+        <Route path="/profile" element={<ProfilePage />} />
+
       </Routes>
     </Router>
   );

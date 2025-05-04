@@ -1,0 +1,134 @@
+.profile-page-container {
+    padding: 2rem;
+    background-color: #121212;
+    color: white;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #ff4b2b;
+  }
+  
+  .profile-field {
+    margin-bottom: 1.5rem;
+  }
+  
+  .profile-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #ff4b2b;
+  }
+  
+  .profile-field p,
+  .profile-field input,
+  .profile-field select {
+    width: 100%;
+    padding: 0.75rem;
+    background: #1e1e1e;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .profile-field input,
+  .profile-field select {
+    font-size: 1rem;
+  }
+  
+  .profile-field input[readonly] {
+    background: #333;
+  }
+  
+  .age-note {
+    font-size: 0.9rem;
+    color: #ff4b2b;
+    margin-top: 0.5rem;
+  }
+  
+  button {
+    display: block;
+    margin: 1.5rem auto;
+    padding: 0.75rem 2rem;
+    background-color: #ff4b2b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #e8431e;
+  }
+  
+  .edit-btn {
+    background-color: #4caf50;
+  }
+  
+  .save-btn {
+    background-color: #ff4b2b;
+  }
+  
+  .save-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .save-btn:disabled::after {
+    content: "Saving...";
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .saved-message {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .saved-message p {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .saved-message .back-btn {
+    margin-top: 10px;
+    background-color: #2d87f0;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .saved-message .back-btn:hover {
+    background-color: #1c67c1;
+  }
+  
+  .error-message {
+    color: #ff4b2b;
+    text-align: center;
+  }
+  
+  .cancel-btn {
+    background-color: #f44336;  /* Red color to represent a cancel action */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #e53935;  /* Darker red on hover */
+  }
+  
+  
