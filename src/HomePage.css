@@ -1,97 +1,161 @@
-/* General Styles */
-html, body, #root {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    color: white;
-  }
-  
-  /* Home Page Container */
-  .homepage-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    flex-direction: column;
-    padding: 2rem;
-  }
-  
-  .homepage-container h1 {
-    font-size: 3rem;
-    color: #ff4b2b;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-  
-  .homepage-container p {
-    color: #ccc;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-  }
-  
-  /* Dashboard Section */
-  .dashboard {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 3rem;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
-    max-width: 600px;
-    width: 100%;
-  }
-  
-  .dashboard ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dashboard ul li {
-    margin: 1.2rem 0;
-  }
-  
-  .dashboard button {
-    background-color: #ff4b2b;
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
-  }
-  
-  .dashboard button:hover {
-    background-color: #e8431e;
-  }
-  
-  .dashboard .auth-links {
-    margin-top: 2rem;
-  }
-  
-  .dashboard .auth-links a {
-    color: #ff4b2b;
-    text-decoration: none;
-    font-size: 1.1rem;
-    margin: 0 0.5rem;
-    transition: color 0.3s ease;
-  }
-  
-  .dashboard .auth-links a:hover {
-    color: #e8431e;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .homepage-container h1 {
-      font-size: 2.5rem;
-    }
-  
-    .dashboard {
-      padding: 2rem;
-    }
-  }
-  
+/* src/HomePage.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #121212;
+  color: white;
+}
+
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #1e1e1e;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.logo {
+  color: #ff4b2b;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-link {
+  color: #ff4b2b;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.header-link:hover {
+  text-decoration: underline;
+}
+
+.profile-circle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #fff;
+  color: #ff4b2b;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.profile-icon {
+  font-size: 1.4rem;
+}
+
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  padding: 3rem 2rem;
+}
+
+.dashboard-item {
+  background: #1f1f1f;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(255, 75, 43, 0.3);
+  transition: transform 0.2s, background 0.3s;
+}
+
+.dashboard-item:hover {
+  background: #292929;
+  transform: translateY(-5px);
+}
+
+/* Profile info container */
+.profile-info-container {
+  background: #2a2a2a;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.profile-info-container h3 {
+  color: #ff4b2b;
+  text-align: center;
+}
+
+.profile-info-container p {
+  color: white;
+  font-size: 1rem;
+}
+
+.logout-btn {
+  display: block;
+  margin: 2rem auto 0;
+  background-color: #ff4b2b;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #e8431e;
+}
+
+/* About and Contact Sections */
+.about-contact {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+}
+
+.about-us,
+.contact-us {
+  width: 45%;
+}
+
+.about-us h2,
+.contact-us h2 {
+  color: #ff4b2b;
+  margin-bottom: 1rem;
+}
+
+.about-us p,
+.contact-us p {
+  color: white;
+  font-size: 1rem;
+}
+
+.contact-us p {
+  margin-top: 0.5rem;
+}
