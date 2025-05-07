@@ -1,4 +1,7 @@
 /* src/HomePage.css */
+* {
+  user-select: none;
+}
 
 body {
   margin: 0;

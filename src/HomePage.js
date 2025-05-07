@@ -77,9 +77,9 @@ function HomePage() {
       </header>
 
       <main className="dashboard">
-        <div onClick={() => handleNavigate('/Subscribe')} className="dashboard-item">Subscribe</div>
+        <div onClick={() => handleNavigate('/subscribe')} className="dashboard-item">Subscribe</div>
         <div onClick={() => handleNavigate('/shop')} className="dashboard-item">Shop</div>
-        <div onClick={() => handleNavigate('/workouts')} className="dashboard-item">Workouts</div>
+        <div onClick={() => handleNavigate('/workouts')} className="dashboard-item">Workouts</div> {/* Fixed path */}
         <div onClick={() => handleNavigate('/progress')} className="dashboard-item">Progress Tracker</div>
         <div onClick={() => handleNavigate('/nutrition')} className="dashboard-item">Nutrition</div>
       </main>

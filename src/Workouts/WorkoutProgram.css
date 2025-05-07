@@ -1,0 +1,41 @@
+.workout-container {
+    padding: 20px;
+  }
+  
+  .workout-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .workout-table th, .workout-table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .workout-table th {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .workout-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .workout-table td {
+    color: #555;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
