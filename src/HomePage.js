@@ -1,4 +1,3 @@
-// src/HomePage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
@@ -8,9 +7,10 @@ import { FaDumbbell, FaUserCircle } from 'react-icons/fa';
 import './HomePage.css';
 
 function HomePage() {
-  const [user] = useAuthState(auth);
+  const [user, loadingAuth] = useAuthState(auth);
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [loadingPage, setLoadingPage] = useState(false); // ✅ NEW state for page loading
 
   const initial = user?.email?.charAt(0).toUpperCase();
 
@@ -31,8 +31,22 @@ function HomePage() {
     }
   };
 
+  const handleNavigate = (path) => {
+    setLoadingPage(true);
+    setTimeout(() => {
+      navigate(path);
+    }, 300); // Add slight delay to show loader (can be adjusted or removed)
+  };
+
   return (
     <div className="homepage-container">
+      {(loadingAuth || loadingPage) && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+          <p>Loading GymHub...</p>
+        </div>
+      )}
+
       <header className="header">
         <div className="logo-section" onClick={() => window.location.href = '/'}>
           <FaDumbbell className="logo-icon" />
@@ -54,7 +68,7 @@ function HomePage() {
               <div className="profile-dropdown">
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>Username:</strong> {user.displayName || 'Not set'}</p>
-                <button onClick={() => navigate('/profile')}>Go to Profile</button>
+                <button onClick={() => handleNavigate('/profile')}>Go to Profile</button>
                 <button onClick={handleLogout} className="logout-btn">Logout</button>
               </div>
             )}
@@ -63,11 +77,11 @@ function HomePage() {
       </header>
 
       <main className="dashboard">
-        <Link to="/membership" className="dashboard-item">Subscribe</Link>
-        <Link to="/shop" className="dashboard-item">Shop</Link>
-        <Link to="/workouts" className="dashboard-item">Workouts</Link>
-        <Link to="/progress" className="dashboard-item">Progress Tracker</Link>
-        <Link to="/nutrition" className="dashboard-item">Nutrition</Link>
+        <div onClick={() => handleNavigate('/Subscribe')} className="dashboard-item">Subscribe</div>
+        <div onClick={() => handleNavigate('/shop')} className="dashboard-item">Shop</div>
+        <div onClick={() => handleNavigate('/workouts')} className="dashboard-item">Workouts</div>
+        <div onClick={() => handleNavigate('/progress')} className="dashboard-item">Progress Tracker</div>
+        <div onClick={() => handleNavigate('/nutrition')} className="dashboard-item">Nutrition</div>
       </main>
 
       <section className="info-section">

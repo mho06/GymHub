@@ -17,6 +17,8 @@ function Signup() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const handleSignup = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -24,6 +26,7 @@ function Signup() {
       return;
     }
 
+    setLoading(true);
     try {
       // Create user with Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -41,6 +44,8 @@ function Signup() {
       navigate("/login"); // redirect to login page after successful signup
     } catch (error) {
       alert("Error signing up: " + error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,6 +56,12 @@ function Signup() {
 
   return (
     <div className="signup-container">
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+          <p>Creating your account...</p>
+        </div>
+      )}
       <div className="signup-form">
         <h2>Create Account</h2>
         <form onSubmit={handleSignup}>
