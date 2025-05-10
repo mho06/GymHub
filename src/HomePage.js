@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -11,6 +11,7 @@ function HomePage() {
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [loadingPage, setLoadingPage] = useState(false); // ✅ NEW state for page loading
+  const [savedPrograms, setSavedPrograms] = useState([]);  // Added state to hold saved programs
 
   const initial = user?.email?.charAt(0).toUpperCase();
 
@@ -36,6 +37,23 @@ function HomePage() {
     setTimeout(() => {
       navigate(path);
     }, 300); // Add slight delay to show loader (can be adjusted or removed)
+  };
+
+  // Load saved programs from localStorage
+  useEffect(() => {
+    const programs = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const program = localStorage.getItem(key);
+      if (program && key.startsWith('customWorkoutProgram')) {
+        programs.push({ name: key, program: JSON.parse(program) });
+      }
+    }
+    setSavedPrograms(programs);
+  }, []);
+
+   const handleProgramClick = (programName) => {
+    navigate(`/program-detail/${programName}`);  // Navigate to detailed view page
   };
 
   return (
@@ -79,10 +97,26 @@ function HomePage() {
       <main className="dashboard">
         <div onClick={() => handleNavigate('/subscribe')} className="dashboard-item">Subscribe</div>
         <div onClick={() => handleNavigate('/shop')} className="dashboard-item">Shop</div>
-        <div onClick={() => handleNavigate('/workouts')} className="dashboard-item">Workouts</div> {/* Fixed path */}
+        <div onClick={() => handleNavigate('/workouts')} className="dashboard-item">Workouts</div>
         <div onClick={() => handleNavigate('/progress')} className="dashboard-item">Progress Tracker</div>
         <div onClick={() => handleNavigate('/nutrition')} className="dashboard-item">Nutrition</div>
       </main>
+
+      {/* Display Saved Programs */}
+      <section className="saved-programs-section">
+        <h2>Your Saved Programs</h2>
+        {savedPrograms.length === 0 ? (
+          <p>No saved programs found. Start creating and saving your workout programs!</p>
+        ) : (
+          <div className="program-list">
+            {savedPrograms.map((program, index) => (
+              <div key={index} className="program-card" onClick={() => handleProgramClick(program.name)}>
+                <h3>{program.name}</h3>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
 
       <section className="info-section">
         <div className="about-us">

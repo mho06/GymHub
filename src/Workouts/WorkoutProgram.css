@@ -38,4 +38,135 @@
     margin-top: 20px;
     margin-bottom: 10px;
   }
-  
+
+
+  /* Customized programs */
+
+  .custom-program-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222; /* Ensure visible text */
+  background-color: #fefefe;
+}
+
+/* Title */
+.custom-program-container h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Program cards */
+.program-selection {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.program-card {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 280px;
+  text-align: center;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.program-card:hover {
+  border-color: #007bff;
+}
+
+.program-card.selected {
+  border-color: #007bff;
+  background-color: #eaf4ff;
+}
+
+/* Table section */
+.program-table-wrapper {
+  overflow-x: auto;
+  margin-top: 2rem;
+}
+
+.program-table-wrapper h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.program-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+  background-color: #fff;
+}
+
+.program-table th,
+.program-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+  vertical-align: middle;
+  color: #222;
+}
+
+.program-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+/* Input styles */
+.program-table input {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.4rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #222;
+  background-color: #f9f9f9;
+}
+
+/* Save button */
+.save-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.save-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .program-selection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .program-card {
+    width: 90%;
+  }
+
+  .program-table {
+    font-size: 0.9rem;
+  }
+}

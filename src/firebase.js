@@ -1,3 +1,4 @@
+// src/firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";  // Use modular imports
 import { getFirestore } from "firebase/firestore";
@@ -12,9 +13,11 @@ const firebaseConfig = {
   measurementId: "G-JJHBZ67JT8"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase services
 const db = getFirestore(app);
-const auth = getAuth(app); // 👈 Initialize Auth
+const auth = getAuth(app);
 
 export { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, db };
-

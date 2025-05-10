@@ -7,10 +7,11 @@ import HomePage from './HomePage';
 import ProfilePage from './ProfilePage';
 import Subscribe from './Subscribe';
 import WorkoutPage from './Workouts/WorkoutPage'; // Main workout page
-import LegDay from './Workouts/LegDay';
+import LegDay from './Workouts/Legday';
 import PushDay from './Workouts/PushDay';
 import PullDay from './Workouts/PullDay';
-import CustomizedPrograms from './Workouts/CustomizedPrograms';
+import CustomizedPrograms from './Workouts/CustomizedPrograms'; // Corrected import
+import ProgramDetailPage from './ProgramDetailPage';
 
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
         <Route path="/workouts/leg-day" element={<LegDay />} />
         <Route path="/workouts/push-day" element={<PushDay />} />
         <Route path="/workouts/pull-day" element={<PullDay />} />
-        <Route path="/workouts/customizedprograms" component={CustomizedPrograms} />
+        <Route path="/workouts/customizedprograms" element={<CustomizedPrograms />} /> {/* Fixed line */}
+        <Route path="/program-detail/:programName" element={<ProgramDetailPage />} />
 
       </Routes>
     </Router>

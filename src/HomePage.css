@@ -284,3 +284,35 @@ body {
     transform: rotate(360deg);
   }
 }
+
+
+.saved-programs-section {
+  padding: 20px;
+  background-color: black;
+}
+
+.saved-programs-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  
+}
+
+.program-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;color: #ff4b2b;
+}
+
+.program-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 200px;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.program-card:hover {
+  background-color: #f0f0f0;
+}
